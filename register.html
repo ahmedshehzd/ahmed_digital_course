@@ -1,36 +1,119 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Teacher Login</title>
+<title>Student Register</title>
+
 <style>
-body{font-family:Arial; display:flex; justify-content:center; align-items:center; height:100vh;}
-.box{background:white; padding:20px; width:300px;}
-input,button{width:100%; padding:10px; margin:5px 0;}
-button{background:black; color:white;}
+body{
+font-family:Arial;
+background:#f2f2f2;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.box{
+background:white;
+padding:20px;
+width:320px;
+border-radius:10px;
+box-shadow:0 0 10px gray;
+}
+
+input,select{
+width:100%;
+padding:10px;
+margin:6px 0;
+}
+
+button{
+width:100%;
+padding:10px;
+background:green;
+color:white;
+border:none;
+cursor:pointer;
+}
 </style>
+
 </head>
 
 <body>
 
 <div class="box">
-<h2>Teacher Login</h2>
 
-<input id="tuser" placeholder="Username">
-<input id="tpass" type="password" placeholder="Password">
+<h2>Student Register</h2>
 
-<button onclick="login()">Login</button>
+<input id="name" placeholder="Full Name">
+<input id="father" placeholder="Father Name">
+<input id="phone" placeholder="Phone Number">
+<input id="email" placeholder="Email">
+<input id="address" placeholder="Address">
+
+<select id="course">
+<option>MS Excel</option>
+<option>Basic Computer</option>
+<option>Amazon</option>
+<option>Basic Design</option>
+<option>Fiverr</option>
+<option>Marketing</option>
+</select>
+
+<input id="pass" type="password" placeholder="Create Password">
+<input id="cpass" type="password" placeholder="Confirm Password">
+
+<button onclick="register()">Register</button>
+
 </div>
 
 <script>
-function login(){
-let u=document.getElementById("tuser").value;
-let p=document.getElementById("tpass").value;
+function register(){
 
-if(u==="admin" && p==="1234"){
-window.location.href="teacher-dashboard.html";
-} else {
-alert("Wrong Teacher Login");
+let name = document.getElementById("name").value;
+let father = document.getElementById("father").value;
+let phone = document.getElementById("phone").value;
+let email = document.getElementById("email").value;
+let address = document.getElementById("address").value;
+let course = document.getElementById("course").value;
+let pass = document.getElementById("pass").value;
+let cpass = document.getElementById("cpass").value;
+
+// validation
+if(name=="" || father=="" || phone=="" || email=="" || address=="" || pass==""){
+alert("Please fill all fields");
+return;
 }
+
+if(pass !== cpass){
+alert("Passwords not matched");
+return;
+}
+
+// all students list
+let students = JSON.parse(localStorage.getItem("students")) || [];
+
+// new student object
+let newStudent = {
+name:name,
+father:father,
+phone:phone,
+email:email,
+address:address,
+course:course,
+password:pass,
+progress:0
+};
+
+// save
+students.push(newStudent);
+localStorage.setItem("students", JSON.stringify(students));
+
+alert("Registration Successful");
+
+// back to login
+window.location.href = "index.html";
+
 }
 </script>
 
