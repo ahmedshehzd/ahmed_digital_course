@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Ahmed Digital Course - Login</title>
+<style>
+body {font-family: Arial; background:#f4f4f4; display:flex; justify-content:center; align-items:center; height:100vh;}
+.box {background:white; padding:30px; width:300px; border-radius:10px; box-shadow:0 0 10px gray;}
+input {width:100%; padding:10px; margin:8px 0;}
+button {width:100%; padding:10px; background:#007bff; color:white; border:none; cursor:pointer;}
+a {display:block; margin-top:10px; text-align:center; cursor:pointer; color:blue;}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+<h2>Ahmed Digital Course</h2>
+
+<input id="loginUser" placeholder="Email">
+<input id="loginPass" type="password" placeholder="Password">
+
+<button onclick="login()">Login</button>
+
+<a href="register.html">Register New Student</a>
+<a href="teacher-login.html">Teacher Login</a>
+</div>
+
+<script>
+function login(){
+let u = document.getElementById("loginUser").value;
+let p = document.getElementById("loginPass").value;
+
+let data = JSON.parse(localStorage.getItem("student"));
+
+if(data && u === data.email && p === data.password){
+localStorage.setItem("activeUser", u);
+window.location.href="student-dashboard.html";
+} else {
+alert("Invalid Login");
+}
+}
+</script>
+
+</body>
+</html>

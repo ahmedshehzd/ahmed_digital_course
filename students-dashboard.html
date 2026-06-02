@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Student Dashboard</title>
+<style>
+body{font-family:Arial; display:flex;}
+.sidebar{width:200px; background:#333; color:white; height:100vh; padding:10px;}
+.sidebar a{display:block; color:white; margin:10px 0; cursor:pointer;}
+.main{padding:20px; flex:1;}
+.progress{width:100%; background:#ddd;}
+.bar{height:20px; background:green; width:30%;}
+</style>
+</head>
+
+<body>
+
+<div class="sidebar">
+<h3>Menu</h3>
+<a onclick="show('home')">Home</a>
+<a onclick="show('course')">My Course</a>
+<a onclick="show('progress')">Progress</a>
+<a onclick="logout()">Logout</a>
+</div>
+
+<div class="main">
+
+<div id="home">
+<h2>Welcome Student</h2>
+<p id="user"></p>
+</div>
+
+<div id="course" style="display:none">
+<h2>My Course</h2>
+<p>MS Excel</p>
+</div>
+
+<div id="progress" style="display:none">
+<h2>Progress</h2>
+<div class="progress"><div class="bar"></div></div>
+</div>
+
+</div>
+
+<script>
+document.getElementById("user").innerText =
+localStorage.getItem("activeUser");
+
+function show(id){
+document.getElementById("home").style.display="none";
+document.getElementById("course").style.display="none";
+document.getElementById("progress").style.display="none";
+
+document.getElementById(id).style.display="block";
+}
+
+function logout(){
+localStorage.clear();
+window.location.href="index.html";
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Teacher Dashboard</title>
+<style>
+body{font-family:Arial; display:flex;}
+.sidebar{width:200px; background:#222; color:white; height:100vh; padding:10px;}
+.sidebar a{display:block; color:white; margin:10px 0; cursor:pointer;}
+.main{padding:20px;}
+input,button{padding:10px; margin:5px;}
+</style>
+</head>
+
+<body>
+
+<div class="sidebar">
+<h3>Teacher</h3>
+<a onclick="show('home')">Dashboard</a>
+<a onclick="show('add')">Add Lecture</a>
+<a onclick="show('students')">Students</a>
+<a onclick="logout()">Logout</a>
+</div>
+
+<div class="main">
+
+<div id="home">
+<h2>Teacher Dashboard</h2>
+<p>Welcome Admin Teacher</p>
+</div>
+
+<div id="add" style="display:none">
+<h2>Add Lecture</h2>
+<input placeholder="Course">
+<input placeholder="Lecture Title">
+<button onclick="alert('Lecture Added')">Add</button>
+</div>
+
+<div id="students" style="display:none">
+<h2>Students</h2>
+<p>Ahmed (MS Excel)</p>
+</div>
+
+</div>
+
+<script>
+function show(id){
+document.getElementById("home").style.display="none";
+document.getElementById("add").style.display="none";
+document.getElementById("students").style.display="none";
+
+document.getElementById(id).style.display="block";
+}
+
+function logout(){
+window.location.href="index.html";
+}
+</script>
+
+</body>
+</html>
